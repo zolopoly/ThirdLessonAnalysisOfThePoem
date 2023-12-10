@@ -5,6 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Stream;
+
+import kotlin.jvm.internal.CollectionToArray;
+
 public class MainActivity extends AppCompatActivity {
 
     // поля
@@ -22,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView output; // поле вывода результата на экран смартфона
 
+    private TextView outputPoem; // поле вывода слов поемы
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         // привязка разметки к полям
         output = findViewById(R.id.output);
+        outputPoem = findViewById(R.id.output_poem);
 
         // конвертирование строки в массив и его сортировка
         poemArray = stringToArray(poem);
@@ -37,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         output.setText(maxWord(poemArray));
         output.append(minWord(poemArray));
         output.append(numberOfLetters(poemArray));
+
+        printSortedWords();
     }
 
     // метод поиска самого длинного слова
@@ -84,9 +95,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // метод конвертирования строки в массив
-    private String[] stringToArray(String text) {
-        String textMod = text.replaceAll("[^А-Яа-я]", " ").trim(); // замена всех символов кроме букв на пробелы и удаление начальных и конечных пробелов
+    private String[] stringToArray(String text) { //[^А-Яа-я,ёЁ]
+        String textMod = text.replaceAll("[\\W]", " ").trim(); // замена всех символов кроме букв на пробелы и удаление начальных и конечных пробелов
         String[] textArray = textMod.split("\\s+"); // деление строки по всем пробелам (от 1 до большего количества пробелов)
         return textArray;
+    }
+
+    // метод вывода отсортированных слов, без дубликатов, в нижнем регистре
+    private void printSortedWords() {
+        Stream<String> stringStream = Stream.of(poemArray);
+        String[] stringArray = stringStream.map(word -> word.toLowerCase()).sorted().distinct().toArray(size -> new String[size]);
+        Arrays.stream(stringArray).forEach(word -> outputPoem.append(word + "\n"));
     }
 }

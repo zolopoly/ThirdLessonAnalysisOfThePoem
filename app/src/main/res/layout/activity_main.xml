@@ -10,12 +10,12 @@
         android:id="@+id/header_one"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:gravity="center"
         android:text="ПРИЛОЖЕНИЕ\nАНАЛИЗ СТИХОТВОРЕНИЯ"
-        android:layout_marginTop="30dp"
+        android:textColor="#177C3A"
         android:textSize="21sp"
         android:textStyle="bold"
-        android:textColor="#177C3A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,12 +24,12 @@
         android:id="@+id/header_two"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
         android:gravity="top"
         android:text="Анализ отрывка произведения\nА.С. Пушкина ''У Лукоморья дуб зелённый'':"
         android:textColor="#4C9063"
         android:textSize="19sp"
         android:textStyle="bold"
-        android:layout_marginTop="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_one" />
@@ -38,17 +38,40 @@
         android:id="@+id/output"
         android:layout_width="350dp"
         android:layout_height="140dp"
-        android:padding="10dp"
+        android:layout_marginTop="14dp"
+        android:background="#E6EFE9"
         android:gravity="top"
         android:hint="Анализ стихотворения"
-        android:textSize="17sp"
-        android:textStyle="italic"
+        android:padding="10dp"
         android:textColor="#177C3A"
         android:textColorHint="#4C9063"
-        android:background="#E6EFE9"
-        android:layout_marginTop="14dp"
+        android:textSize="17sp"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_two"/>
+        app:layout_constraintTop_toBottomOf="@+id/header_two" />
+
+    <ScrollView
+        android:layout_width="350dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/output">
+
+        <TextView
+            android:id="@+id/output_poem"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:background="#E6EFE9"
+            android:gravity="top"
+            android:padding="10dp"
+            android:textColor="#177C3A"
+            android:textColorHint="#4C9063"
+            android:textSize="17sp"
+            android:textStyle="italic" />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
