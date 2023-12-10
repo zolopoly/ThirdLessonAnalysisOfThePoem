@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // метод конвертирования строки в массив
-    private String[] stringToArray(String text) { //[^А-Яа-я,ёЁ]
+    private String[] stringToArray(String text) {
         String textMod = text.replaceAll("[\\W]", " ").trim(); // замена всех символов кроме букв на пробелы и удаление начальных и конечных пробелов
         String[] textArray = textMod.split("\\s+"); // деление строки по всем пробелам (от 1 до большего количества пробелов)
         return textArray;
